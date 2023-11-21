@@ -27,13 +27,14 @@ async def write_md_to_pdf(text: str) -> str:
     """
     task = uuid.uuid4().hex
     file_path = f"outputs/{task}"
+    css_file = './md2pdf_style.css'
     await write_to_file(f"{file_path}.md", text)
 
     try:
         md2pdf(f"{file_path}.pdf",
                md_content=None,
                md_file_path=f"{file_path}.md",
-               css_file_path=None,
+               css_file_path=css_file,
                base_url=None)
         print(f"Report written to {file_path}.pdf")
     except Exception as e:
